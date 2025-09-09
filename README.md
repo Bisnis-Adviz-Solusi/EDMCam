@@ -62,3 +62,7 @@ cd frontend
 npm install
 npm run dev
 ```
+
+## Contributor
+
+[Luh Made Ayu Tasya Devi Pratisthita](https://github.com/madetasya)
