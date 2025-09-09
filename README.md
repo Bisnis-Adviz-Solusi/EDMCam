@@ -33,7 +33,7 @@ Extras: Multer, Bcrypt, Dotenv, CORS
 
 ## Run the Project
 ##### 1. Clone the project
-`git clone https://github.com/madetasya/EDMCam.git
+`git clone https://github.com/Bisnis-Adviz-Solusi/EDMCam.git
 `
 <br>
 
