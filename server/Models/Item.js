@@ -3,9 +3,6 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const itemSchema = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId,
-  },
   totalPrice: {
     type: Number,
     required: true,
