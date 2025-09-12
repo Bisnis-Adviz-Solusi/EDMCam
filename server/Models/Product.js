@@ -30,9 +30,12 @@ const productSchema = new Schema(
       ref: "Category",
     },
   },
-  { timestamps: { 
-    createdAt: false, 
-    updatedAt: true } }
+  {
+    timestamps: {
+      createdAt: false,
+      updatedAt: true,
+    },
+  }
 );
 
 export default mongoose.model("Product", productSchema);

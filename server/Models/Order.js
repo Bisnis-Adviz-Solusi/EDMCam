@@ -1,50 +1,72 @@
-import mongoose, { mongo, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const { Schema } = mongoose;
 
-const orderSchema = new Schema({
-  userName: {
-    type: String,
-    required: true,
+const orderSchema = new Schema(
+  {
+    userNameSnapshot: {
+      type: String,
+      required: true,
+    },
+    userPhoneNumberSnapshot: {
+      type: Number,
+      required: true,
+    },
+    userEmailSnapshot: {
+      type: String,
+      required: true,
+    },
+    shippingAddress: {
+      type: String,
+      required: true,
+    },
+    statusOrder: {
+      type: String,
+      enum: ["PAID", "PACKED", "SHIPPED", "DELIVERED", "COMPLETED", "CANCELED"],
+      required: true,
+    },
+    grandTotal: {
+      type: Number,
+      required: true,
+    },
+    hasRefund: {
+      type: Boolean,
+    },
+    //use partial indexes expression on controller.
+    //see documentation: https://www.mongodb.com/docs/manual/core/index-partial/
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
+    deletedAt: {
+      type: Date,
+      default: null,
+    },
+    itemId: {
+      type: [Schema.Types.ObjectId],
+      ref: "Item",
+      required: true,
+    },
+    orderItemsId: {
+      type: [Schema.Types.ObjectId],
+      ref: "OrderItems",
+      required: true,
+    },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    refundId: {
+      type: Schema.Types.ObjectId,
+      ref: "Refund",
+      default: null,
+    },
   },
-  userPhoneNumber: {
-    type: Number,
-    required: true,
-  },
-  userEmail: {
-    type: String,
-    required: true,
-  },
-  address: {
-    type: String,
-    required: true,
-  },
-  status: {
-    type: String,
-    enum: ["On Going", "Done", "Failed"],
-    required: true,
-  },
-  grandTotal: {
-    type: Number,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    required: true,
-  },
-  isDeleted: {
-    type: Boolean,
-  },
-  itemId: {
-    type: [Schema.Types.ObjectId],
-    ref: "Item",
-    required: true,
-  },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-});
+  { timestamps: true },
+  //avoid duplicate data if user spam clicks like they're in a stroke
 
-export default mongoose.Model("Order", orderSchema);
+  { collection: "Order", versionKey: true }
+);
+
+export default mongoose.model("Order", orderSchema);
