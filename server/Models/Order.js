@@ -62,10 +62,16 @@ const orderSchema = new Schema(
       ref: "Refund",
       default: null,
     },
+    orderPaymentId: {
+      type: Schema.Types.ObjectId,
+      ref: "OrderPayment",
+      required: true,
+    },
   },
+  //same thing as declaring createdAt and updatedAt fields.
   { timestamps: true },
-  //avoid duplicate data if user spam clicks like they're in a stroke
 
+  //avoid duplicate data if user spam clicks like they're in a stroke
   { collection: "Order", versionKey: true }
 );
 
