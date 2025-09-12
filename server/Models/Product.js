@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
+//use compound indexes for name, description, and category
+//see documentation: https://www.mongodb.com/docs/manual/core/indexes/index-types/index-compound/
 const productSchema = new Schema(
   {
     _id: {
