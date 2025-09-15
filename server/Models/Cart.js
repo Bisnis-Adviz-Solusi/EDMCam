@@ -13,11 +13,13 @@ const cartSchema = new Schema(
       required: true,
     },
     cartItemsId: {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
+      ref: "CartItem",
       required: true,
     },
     userId: {
       type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
   },
