@@ -23,6 +23,6 @@ const orderItemsSchema = new Schema({
     ref: "Order",
     required: true,
   },
-});
+},{timestamps: false});
 
 export default mongoose.model("OrderItem", orderItemsSchema);
