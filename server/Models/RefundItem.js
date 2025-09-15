@@ -20,7 +20,7 @@ const refundItemSchema = new Schema({
         required: true
     },
     orderItemId:{
-        type: Schema.Types.ObjectId,
+        type: [Schema.Types.ObjectId],
         ref: "OrderItem",
         required: true
     }
