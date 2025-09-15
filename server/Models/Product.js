@@ -33,10 +33,7 @@ const productSchema = new Schema(
     },
   },
   {
-    timestamps: {
-      createdAt: false,
-      updatedAt: true,
-    },
+    timestamps: true
   }
 );
 

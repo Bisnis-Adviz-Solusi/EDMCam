@@ -42,14 +42,9 @@ const orderSchema = new Schema(
       type: Date,
       default: null,
     },
-    itemId: {
-      type: [Schema.Types.ObjectId],
-      ref: "Item",
-      required: true,
-    },
     orderItemsId: {
       type: [Schema.Types.ObjectId],
-      ref: "OrderItems",
+      ref: "OrderItem",
       required: true,
     },
     userId: {

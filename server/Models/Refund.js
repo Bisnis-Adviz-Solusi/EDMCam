@@ -22,12 +22,16 @@ const refundSchema = new Schema(
       type: String,
       required: true,
     },
-    userNumberSnapshot: {
+    userPhoneNumberSnapshot: {
       type: Number,
       required: true,
     },
     //jangan lupa validasi isEmail di controller
-    userEmail: {
+    userEmailSnapshot: {
+      type: String,
+      required: true,
+    },
+    shippingAddress: {
       type: String,
       required: true,
     },
@@ -76,7 +80,7 @@ const refundSchema = new Schema(
     },
   },
   {
-    timestamps: true,
+    timestamps: true, versionKey: true
   }
 );
 
