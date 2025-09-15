@@ -46,7 +46,7 @@ const refundSchema = new Schema(
     adminNote: {
       type: String,
     },
-    status: {
+    statusRefund: {
       type: [statusRefundSchema],
       required: true,
     },
