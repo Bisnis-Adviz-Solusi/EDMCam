@@ -25,3 +25,5 @@ const refundItemSchema = new Schema({
         required: true
     }
 },{timestamps: false})
+
+export default mongoose.model("RefundItem", refundItemSchema)
