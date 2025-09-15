@@ -36,7 +36,7 @@ ADJUST: Admin bikin kesalahan jadi harus adjust x nya (basically cepu)
       ref: "Order",
     },
     productId: {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       ref: "Product",
     },
   },
