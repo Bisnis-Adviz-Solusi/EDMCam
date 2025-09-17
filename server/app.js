@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import authorization from './.middleware/authorization.js';
 
 const app = express();
 const port = process.env.PORT
@@ -43,4 +44,4 @@ app.get('/', (req, res) => {
 })
 
 //testing purposes
-app.get('/test', getToken)
+app.get('/test', authorization)
