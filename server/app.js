@@ -41,3 +41,6 @@ app.listen(port, () => {
 app.get('/', (req, res) => {
   res.send('Was machst du hier?');
 })
+
+//testing purposes
+app.get('/test', getToken)
