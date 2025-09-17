@@ -9,14 +9,14 @@ const port = process.env.PORT
 const mongoUri = process.env.MONGO_URI
 
 //connect DB
-async function main() {
+async function connectDB() {
   await mongoose.connect(mongoUri);
     console.log('Connected to MongoDB');
 }
 mongoose.connection.on('error', err => {
   console.error('MongoDB connection error:', err);
 });
-main().catch(console.dir);
+connectDB().catch(console.dir);
 
 //======== middlewares ========//
 //cors
