@@ -127,6 +127,7 @@ const login = async (req, res) => {
       {
         id: _id,
         email: user.email,
+        role: user.role
       },
       secret,
       { expiresIn: "3d" }
@@ -135,8 +136,9 @@ const login = async (req, res) => {
       createToken,
       message: "Login success",
     });
+    //DARI SINI KE VERIFY TOKEN MIDDLEWARE
   } catch (error) {
-    console.log("ERROR BG ==>", error);
+    console.log("ERROR (USER CONTROLLER LOGIN) ==>", error);
     return res.status(500).json({
       message: "Invalid Server Error",
     });
