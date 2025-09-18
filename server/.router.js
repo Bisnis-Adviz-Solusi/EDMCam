@@ -6,6 +6,7 @@ const router = express.Router();
 router.post("/register", userController.register);
 router.post("/login", userController.login);
 router.get("/users", userController.getAllUsers);
-router.get("user/:name", userController.getUserbyName);
+router.get("/user/:name", userController.getUserbyName);
+router.put("/user/:id", userController.updateUserbyUser);
 
 export default router;

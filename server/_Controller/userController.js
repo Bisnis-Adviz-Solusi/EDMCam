@@ -3,6 +3,7 @@ import User from "../_Models/User.js";
 import validator from "validator";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 const secret = process.env.JWT_SECRET;
 
 const register = async (req, res) => {
@@ -162,7 +163,7 @@ const getAllUsers = async (req, res) => {
 
 const getUserbyName = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name } = req.params;
     const getName = await findOne({ name });
     if (!getName) {
       return res.status(400).json({ message: "User Not Found" });
@@ -176,9 +177,35 @@ const getUserbyName = async (req, res) => {
   }
 };
 
+const updateUserbyUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, phoneNumber, password, confirmPassword, email } = req.body;
+    console.log("ini PARAM ID", id)
+    console.log("ini yang dari login", req.user._id)
+    //VALIDASI YANG LOGIN SIAPA
+    if (req.user._id !== id || req.user.role !== "admin") {
+      return res.send(401).json({ message: "Not Authorized to change this user" });
+    }
+
+    const updateData = await User.findByIdAndUpdate(id, {
+      name,
+      phoneNumber,
+      password,
+      email,
+    });
+    console.log("INI DATA YANG DI UPDATE (UPDATE BY USER) ===>", updateData);
+    return res.send(200).json({ updateData, message: "Update user data success!" });
+  } catch (error) {
+    console.log("ERROR UPDATE USER DATA 500 ==>", error);
+    return res.status(400).json({ message: "Invalid Server Error (UPDATE USER DATA)" });
+  }
+};
+
 export default {
   register,
   login,
   getAllUsers,
   getUserbyName,
+  updateUserbyUser,
 };

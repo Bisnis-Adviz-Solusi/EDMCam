@@ -1,39 +1,30 @@
-dotenv().config;
-// REQUIRE JWT
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 const secret = process.env.JWT_SECRET;
 
-// CREATE ARROW FUNCTION
-const authentication = async (req, res, next) => {
-  // USE TRY CATCH
+const authentication = (req, res, next) => {
   try {
-    // GET TOKEN FROM HEADERS (AUTHORIZATION)
-    const dataHeader = req.headers["authentication"];
-    // SPLIT HEADER TO GET TOKEN
-    const token = dataHeader && dataHeader.split(" ")[1];
+    // 1. GET TOKEN DARI HEADER "AUTHORIZATION"
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
 
-    // VALIDATE IF NO TOKEN RETURN ERROR
+    // 2. VALIDASI KALO TOKEN NGGAK ADA
     if (!token) {
-      res.status(401).json({
-        message: "Token not found",
-      });
+      return res.status(401).json({ message: "Token not found" });
     }
 
-    // DECLARE VARIABLE FOR JWT.VERIFY()
-    const verifyToken = jwt.verify(token, secret);
-    console.log("DECODED(AUTH.JS)>>>>>", verifyToken);
+    // 3. VERIFY TOKEN
+    const decoded = jwt.verify(token, secret);
+    console.log("DECODED PAYLOAD >>>>", decoded);
 
-    if (!verifyToken) {
-      return res(401).json({
-        message: "Invalid Token",
-      });
-    }
-    req.user = verifyToken;
+    // 4. SIMPAN DECODE KE REQ.USER
+    req.user = decoded;
+
     next();
   } catch (error) {
-    return res.status(500).json({
-      message: "Invalid Server Error (token)",
-    });
+    return res.status(401).json({ message: "Invalid or expired token" });
   }
 };
 
