@@ -1,4 +1,4 @@
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 import User from "../_Models/User.js";
 import validator from "validator";
 import bcrypt from "bcryptjs";
@@ -158,10 +158,27 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+//===============//
 
+const getUserbyName = async (req, res) => {
+  try {
+    const { name } = req.body;
+    const getName = await findOne({ name });
+    if (!getName) {
+      return res.status(400).json({ message: "User Not Found" });
+    }
+    return res.status(200).json({ getName, message: "User Found" });
+  } catch (error) {
+    console.log("USER BY NAME ERROR GAN ==>", error);
+    return res.status(500).json({
+      message: "Invalid Server Error (GET USER BY NAME)",
+    });
+  }
+};
 
 export default {
   register,
   login,
   getAllUsers,
+  getUserbyName,
 };
