@@ -1,6 +1,10 @@
+dotenv().config;
 import User from "../_Models/User.js";
 import validator from "validator";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import User from "../_Models/User.js";
+const secret = process.env.JWT_SECRET;
 
 const register = async (req, res) => {
   try {
@@ -91,6 +95,55 @@ const register = async (req, res) => {
   }
 };
 
+//===============//
+
+const login = async (req, res) => {
+  try {
+    //REQUEST BODY DATA
+    const { email, password } = req.body;
+
+    //FUNCTION FOR FIND USER FROM DATABASE
+    const user = await User.findOne({ email });
+    //VALIDATE IF USER NOT FOUND
+    if (!user) {
+      return res.status(400).json({
+        message: "User not found!",
+      });
+    }
+
+    //CHECK PASSWORD
+    //COMPARE PASSWORD USING BCRYPT
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    //VALIDATE IF PASSWORD NOT MATCH
+    if (!isMatch) {
+      return res.status(400).json({
+        message: "Wrong password",
+      });
+    }
+
+    //CREATE JWT TOKEN
+    const createToken = jwt.sign(
+      {
+        id: _id,
+        email: user.email,
+      },
+      secret,
+      { expiresIn: "3d" }
+    );
+    res.status(200).json({
+      createToken,
+      message: "Login success",
+    });
+  } catch (error) {
+    console.log("ERROR BG ==>", error);
+    return res.status(500).json({
+      message: "Invalid Server Error",
+    });
+  }
+};
+
 export default {
   register,
+  login,
 };
