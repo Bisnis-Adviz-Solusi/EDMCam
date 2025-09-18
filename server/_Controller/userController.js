@@ -1,9 +1,8 @@
-dotenv().config;
+import dotenv from "dotenv"
 import User from "../_Models/User.js";
 import validator from "validator";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../_Models/User.js";
 const secret = process.env.JWT_SECRET;
 
 const register = async (req, res) => {
@@ -127,7 +126,7 @@ const login = async (req, res) => {
       {
         id: _id,
         email: user.email,
-        role: user.role
+        role: user.role,
       },
       secret,
       { expiresIn: "3d" }
@@ -145,7 +144,24 @@ const login = async (req, res) => {
   }
 };
 
+//===============//
+
+const getAllUsers = async (req, res) => {
+  try {
+    const allUser = await User.find();
+    return res.status(200).json({ allUser, message: "All User Found" });
+  } catch (error) {
+    console.log("INI ALL USER GAK ADA (USER CONTROLLER) ==>", error);
+    return res.status(500).json({
+      message: "Invalid Server Error (GET ALL USER)",
+    });
+  }
+};
+
+
+
 export default {
   register,
   login,
+  getAllUsers,
 };
