@@ -1,10 +1,10 @@
-import User from "../_Models/User";
+import User from "../_Models/User.js";
 import validator from "validator";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 const register = async (req, res) => {
   try {
-    const { name, phoneNumber, email, password, confirmPassword } = req.body;
+    const { name, phoneNumber, email, password, confirmPassword, role } = req.body;
 
     //VALIDASI
 
@@ -16,7 +16,7 @@ const register = async (req, res) => {
     }
 
     // CHECK VALID PHONE NUMBER
-    if (!validator.isMobilePhone(phoneNumber, (locale = "id-ID"))) {
+    if (!validator.isMobilePhone(phoneNumber, "id-ID")) {
       return res.status(400).json({
         message: "Invalid phone number",
       });
@@ -30,21 +30,17 @@ const register = async (req, res) => {
     }
 
     //CHECK PASSWORD LENGTH
-    if (password.length > 6) {
+    if (password.length < 6) {
       return res.status(400).json({
         message: "Password should at least 6 character",
       });
     }
 
     //PASS REGEX (MANUAL)
-    const regex = [
-      /[a-z]/, // Lowercase
-      /[A-Z]/, // Uppercase
-      /\d/, // Digit
-      /[@.#$!%^&*.?]/, // Special character
-    ];
-
-    if (!regex.test(password)) {
+    const regex = [/[a-z]/, /[A-Z]/, /\d/, /[@.#$!%^&*.?]/];
+    //.every() soa
+    const isStrong = regex.every((element) => element.test(password));
+    if (!isStrong) {
       return res.status(400).json({
         message: "Password is not strong enough",
       });
@@ -73,7 +69,7 @@ const register = async (req, res) => {
     }
 
     //HASH PASSWORD
-    const hashPassword = bcrypt.hash(password, 10);
+    const hashPassword = await bcrypt.hash(password, 10);
 
     //CREATE USER
     const createUser = await User.create({
@@ -81,15 +77,20 @@ const register = async (req, res) => {
       email,
       password: hashPassword,
       phoneNumber,
-      role,
+      role: "customer",
     });
     return res.status(200).json({
       createUser,
       message: "Register user successfull",
     });
   } catch (error) {
+    console.log("THIS IS ERROR>>>", error);
     return res.status(500).json({
       message: "Invalid server Error",
     });
   }
+};
+
+export default {
+  register,
 };
