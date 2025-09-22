@@ -2,7 +2,7 @@
 
 ### Tech stack
 
-Frontend: React + Vite
+Frontend: Angular
 Backend: Node.js + Express
 Database: MongoDB with Mongoose
 Auth: JWT
