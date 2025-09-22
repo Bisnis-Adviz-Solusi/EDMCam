@@ -17,7 +17,7 @@ const authentication = (req, res, next) => {
 
     // 3. VERIFY TOKEN
     const decoded = jwt.verify(token, secret);
-    console.log("DECODED PAYLOAD >>>>", decoded);
+    console.log("CEK SAHA NU LOGIN GANNNNNNNNN >>>>", decoded);
 
     // 4. SIMPAN DECODE KE REQ.USER
     req.user = decoded;
