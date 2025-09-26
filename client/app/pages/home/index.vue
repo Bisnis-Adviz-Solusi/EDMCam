@@ -1,3 +1,4 @@
 <template>
-  <div>Home</div>
+  <div>Home nya bang
+  </div>
 </template>

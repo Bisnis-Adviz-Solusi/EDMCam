@@ -1,0 +1,75 @@
+$font-main: "Poppins", sans-serif;
+$font-secondary: "Gudea", sans-serif;
+//color
+$primary: #44174e;
+$secondary: #201d38;
+$innerBg: #eeebee;
+$white: #ffff;
+$orange: #fb8245;
+$pink: #9e3e52;
+$lpurple: #c6bdd7;
+$lpink: #efe5f1;
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  letter-spacing: 1.3px;
+  background: $white;
+  color: $secondary
+}
+
+.title1 {
+  font-family: $font-main;
+  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: 1.3px;
+}
+
+.subtitle1 {
+  font-family: $font-main;
+  font-weight: 300;
+  font-size: 20px;
+  letter-spacing: 1.3px;
+}
+
+.content1 {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 6px;
+}
+
+.title2 {
+  font-family: $font-main;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 1.3px;
+}
+
+.subtitle2 {
+  font-family: $font-secondary;
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 1.3px;
+}
+
+.content2 {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 6px;
+}
+
+.subtitle3 {
+  font-family: $font-main;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1.3px;
+}
+
+.content3 {
+  font-family: $font-secondary;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 6px;
+}
