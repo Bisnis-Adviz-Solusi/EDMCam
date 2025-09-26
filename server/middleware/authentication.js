@@ -16,6 +16,7 @@ const authentication = (req, res, next) => {
     }
 
     // 3. VERIFY TOKEN
+    
     const decoded = jwt.verify(token, secret);
     console.log("CEK SAHA NU LOGIN GANNNNNNNNN >>>>", decoded);
 
