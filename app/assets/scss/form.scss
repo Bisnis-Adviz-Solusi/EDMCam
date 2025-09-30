@@ -1,0 +1,33 @@
+@use "sass:color";
+@use "./variables" as *;
+@use "./mixins" as *;
+
+.searchBar {
+  display: flex;
+  width: 48%;
+  height: 32px;
+  padding: 3px 2px 3px 14px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 30px;
+  border: 2px solid $primary;
+
+  input {
+    flex: 1;
+    border: none;
+    outline: none;
+    color: $primary;
+    font-family: "Gudea", sans-serif;
+    font-size: 16px;
+    font-style: regular;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1px;
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.42);
+      font-style: italic;
+      letter-spacing: 1.3px;
+    }
+  }
+}

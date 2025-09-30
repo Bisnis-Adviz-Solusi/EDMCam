@@ -1,0 +1,159 @@
+@use "sass:color";
+@use "./variables" as *;
+@use "./mixins" as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 36px;
+  border-radius: 50px;
+  font-family: $font-main;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.btn-primary {
+    @include gradient-animation($primary, $pink, $gradient);
+    color: $white;
+    box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+    &:hover {
+      box-shadow: 0 8px 16px rgba(32, 29, 56, 0.3);
+    }
+    &:active {
+      box-shadow: 0 4px 8px rgba(32, 29, 56, 0.3);
+    }
+  }
+
+  &.btn-addtocart {
+    @include gradient-animation($primary, $pink, $gradient);
+    width: 100%;
+    padding: 8px 0;
+
+    font-weight: 500;
+    font-size: 12px;
+    color: $white;
+
+    box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+    &:hover {
+      box-shadow: 0 8px 16px rgba(32, 29, 56, 0.3);
+    }
+    &:active {
+      box-shadow: 0 4px 8px rgba(32, 29, 56, 0.3);
+    }
+  }
+
+  &.btn-outline-p {
+    background: transparent;
+    color: $primary;
+    border: 2px solid $primary;
+    transition: all 0.1s ease-in-out;
+    box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+
+    &:hover {
+      background: $primary;
+      color: $white;
+      box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+    }
+
+    &:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(32, 29, 56, 0.3);
+    }
+
+    &.is-active {
+      background: linear-gradient(135deg, $secondary, $primary, $gradient);
+      color: $white;
+      box-shadow: 0 4px 8px rgba(32, 29, 56, 0.3);
+    }
+  }
+
+  &.btn-white {
+    background: $innerBg;
+    color: $primary;
+    box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      background: color.adjust($innerBg, $lightness: -3%);
+      color: color.adjust($primary, $lightness: 6%);
+      box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+    }
+    &:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(32, 29, 56, 0.3);
+    }
+  }
+
+  &.btn-outline-w {
+    background: transparent;
+    color: $innerBg;
+    border: 2px solid $innerBg;
+    transition: all 0.1s ease-in-out;
+    box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+
+    &:hover {
+      background: $innerBg;
+      color: $primary;
+      box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+    }
+
+    &:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(32, 29, 56, 0.3);
+    }
+
+    &.is-active {
+      background: $innerBg;
+      color: $primary;
+      box-shadow: 0 4px 8px rgba(32, 29, 56, 0.3);
+    }
+  }
+
+  &.btn-class {
+    @include gradient-animation($pink, $gradient, $orange);
+    color: $white;
+    box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+
+    &:hover {
+      box-shadow: 0 8px 16px rgba(32, 29, 56, 0.3);
+    }
+
+    &:active {
+      box-shadow: 0 8px 16px rgba(32, 29, 56, 0.3);
+    }
+  }
+
+  &.btnSearch {
+    @include hover-lift;
+    background: $primary;
+    display: flex;
+    min-width: 24px;
+    height: 20px;
+    padding: 13px 14px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: $innerBg;
+    font-weight: 500;
+    flex-direction: row;
+
+    &:active {
+      transform: scale(0.95);
+      box-shadow: 0 4px 8px rgba(32, 29, 56, 0.3);
+    }
+  }
+}
