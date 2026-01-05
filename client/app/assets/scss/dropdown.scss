@@ -1,0 +1,177 @@
+@use "sass:color";
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "breakpoints" as *;
+@use "font" as *;
+
+.ddButton {
+  @extend .subtitle3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid #a78dad;
+  min-width: 100px;
+  width: fit-content;
+  height: 80%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: linear-gradient(270deg, color.adjust($xlpurple, $lightness: -10%), color.adjust($xlpurple, $lightness: -10%), color.adjust($lpurple, $lightness: -8%));
+  background-size: 300% 300%;
+  background-position: right center;
+  transition: background-position 0.6s ease, transform 0.2s ease;
+
+  &:hover {
+    background-position: left center;
+  }
+
+  p {
+    color: $primary;
+    user-select: none;
+    margin: 0;
+  }
+
+  .ddArrow {
+    transition: transform 0.3s ease-in-out;
+    transform-origin: center;
+    width: 8px;
+    height: 8px;
+
+    svg {
+      width: 8px;
+      height: 8px;
+      fill: $primary;
+      transition: transform 0.3s ease-in-out;
+    }
+  }
+
+  &.active {
+    .ddArrow svg {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.ddContent {
+  @extend .content3;
+  list-style: none;
+  position: absolute;
+  top: 32px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid $primary;
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-10px);
+  transition: all 0.25s ease-in-out;
+  overflow: hidden;
+  cursor: pointer;
+  max-height: 120px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  z-index: 1000;
+
+  li {
+    padding: 6px;
+    color: $primary;
+    text-align: start;
+    transition: background 0.25s ease;
+
+    &:hover {
+      background: color.adjust($xlpurple, $lightness: -10%);
+    }
+  }
+}
+
+.ddButton.active + .ddContent {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.ddModal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 51;
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    animation: fadeSlideIn 0.3s ease;
+
+    h3 {
+      @extend .subtitle2;
+      color: $primary;
+      margin-bottom: 8px;
+      text-align: center;
+      cursor: default;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    ul {
+      list-style: none;
+      max-height: 250px;
+      overflow-y: auto;
+
+      li {
+        @extend .subtitle3;
+        padding: 10px;
+        text-align: start;
+        color: $primary;
+        border-bottom: 1px solid #eee;
+        transition: background 0.25s ease;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        &:hover {
+          background: #f7f1fa;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include min(lg) {
+  .ddModal {
+    display: none !important;
+  }
+}

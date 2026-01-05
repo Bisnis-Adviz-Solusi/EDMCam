@@ -1,0 +1,38 @@
+:root {
+  --darkPrimary: #1d1a39;
+  --darkSecondary: #451952;
+  --darkAccent: #662549;
+  --dangerTone: #ae445a;
+  --warmHighlight: #f39f5a;
+  --softLight: #e8bcb9;
+}
+
+.landingPageShell {
+  background: radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--darkAccent) 20%, transparent), transparent 40%),
+    radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--warmHighlight) 18%, transparent), transparent 38%),
+    var(--darkPrimary);
+  color: var(--softLight);
+  min-height: 100vh;
+}
+
+.sectionSurface {
+  background: linear-gradient(145deg, color-mix(in srgb, var(--darkSecondary) 65%, transparent), color-mix(in srgb, var(--darkPrimary) 85%, transparent));
+  border: 1px solid color-mix(in srgb, var(--softLight) 16%, transparent);
+}
+
+.accentUnderline {
+  position: relative;
+  display: inline-block;
+}
+
+.accentUnderline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 48%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--warmHighlight), var(--dangerTone));
+  border-radius: 999px;
+  opacity: 0.9;
+}

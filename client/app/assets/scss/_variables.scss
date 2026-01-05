@@ -1,10 +1,10 @@
 $font-main: "Poppins", sans-serif;
 $font-secondary: "Gudea", sans-serif;
 
-// colors
+// default (light)
 $primary: #44174e;
 $secondary: #201d38;
-$gradient: #7D2B5A;
+$gradient: #7d2b5a;
 $innerBg: #eeebee;
 $white: #ffffff;
 $orange: #fb8245;
@@ -12,3 +12,17 @@ $pink: #9e3e52;
 $lpurple: #c6bdd7;
 $xlpurple: #e2dfe9;
 $lpink: #efe5f1;
+
+// dark theme
+$primaryDark: #241328;
+$secondaryDark: #110f22;
+$gradientDark: #5e2360;
+$innerBgDark: #0a0816;
+$whiteDark: #e4e4e4;
+$orangeDark: #e07a3f;
+$pinkDark: #612843;
+$lpurpleDark: #110e21;
+$xlpurpleDark: #19152d;
+$lpinkDark: #211728;
+
+

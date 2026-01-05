@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "./variables" as *;
 @use "./mixins" as *;
+@use "breakpoints" as *;
 
 .button {
   display: inline-flex;
@@ -8,11 +9,7 @@
   justify-content: center;
   gap: 8px;
   padding: 12px 36px;
-  border-radius: 50px;
-  font-family: $font-main;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: 1.2px;
+  border-radius: 8px;
   cursor: pointer;
   border: none;
   position: relative;
@@ -27,6 +24,7 @@
     @include gradient-animation($primary, $pink, $gradient);
     color: $white;
     box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+
     &:hover {
       box-shadow: 0 8px 16px rgba(32, 29, 56, 0.3);
     }
@@ -39,12 +37,9 @@
     @include gradient-animation($primary, $pink, $gradient);
     width: 100%;
     padding: 8px 0;
-
-    font-weight: 500;
-    font-size: 12px;
     color: $white;
-
     box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+
     &:hover {
       box-shadow: 0 8px 16px rgba(32, 29, 56, 0.3);
     }
@@ -59,6 +54,7 @@
     border: 2px solid $primary;
     transition: all 0.1s ease-in-out;
     box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+    width: 100%;
 
     &:hover {
       background: $primary;
@@ -83,6 +79,7 @@
     color: $primary;
     box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
     transition: all 0.1s ease-in-out;
+    width: 100%;
 
     &:hover {
       background: color.adjust($innerBg, $lightness: -3%);
@@ -101,6 +98,7 @@
     border: 2px solid $innerBg;
     transition: all 0.1s ease-in-out;
     box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+    width: 100%;
 
     &:hover {
       background: $innerBg;
@@ -124,6 +122,7 @@
     @include gradient-animation($pink, $gradient, $orange);
     color: $white;
     box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+    width: 100%;
 
     &:hover {
       box-shadow: 0 8px 16px rgba(32, 29, 56, 0.3);
@@ -133,27 +132,82 @@
       box-shadow: 0 8px 16px rgba(32, 29, 56, 0.3);
     }
   }
+}
 
-  &.btnSearch {
-    @include hover-lift;
-    background: $primary;
-    display: flex;
-    min-width: 24px;
-    height: 20px;
-    padding: 13px 14px;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-    font-size: 12px;
-    letter-spacing: 1px;
-    color: $innerBg;
-    font-weight: 500;
-    flex-direction: row;
+.buttonIcon {
+  display: flex;
+  height: fit-content;
+  padding: 100px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  background-color: $primary;
+  box-shadow: 0 8px 16px rgba(32, 29, 56, 0.2);
+  width: fit-content;
+  padding: 4px;
+  
+  &:hover {
+    box-shadow: 0 8px 16px rgba(32, 29, 56, 0.3);
+  }
 
-    &:active {
-      transform: scale(0.95);
-      box-shadow: 0 4px 8px rgba(32, 29, 56, 0.3);
+  &:active {
+    box-shadow: 0 8px 16px rgba(32, 29, 56, 0.3);
+  }
+}
+/* DARK MO
+
+DE */
+.dark {
+  .button {
+    &.btn-primary,
+    &.btn-addtocart {
+      @include gradient-animation($primaryDark, $pinkDark, $gradientDark);
+      color: $whiteDark;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    &.btn-outline-p {
+      color: $primaryDark;
+      border-color: $primaryDark;
+
+      &:hover {
+        background: $primaryDark;
+        color: $whiteDark;
+      }
+
+      &.is-active {
+        background: linear-gradient(135deg, $secondaryDark, $primaryDark, $gradientDark);
+        color: $whiteDark;
+      }
+    }
+
+    &.btn-white {
+      background: $innerBgDark;
+      color: $whiteDark;
+
+      &:hover {
+        background: color.adjust($innerBgDark, $lightness: 3%);
+        color: color.adjust($whiteDark, $lightness: -10%);
+      }
+    }
+
+    &.btn-outline-w {
+      color: $whiteDark;
+      border-color: $whiteDark;
+
+      &:hover {
+        background: $whiteDark;
+        color: $primaryDark;
+      }
+    }
+
+    &.btn-class {
+      @include gradient-animation($pinkDark, $gradientDark, $orangeDark);
+      color: $whiteDark;
     }
   }
 }

@@ -48,3 +48,28 @@
     z-index: 5;
   }
 }
+
+@mixin shake($distance: 4px, $duration: 0.3s) {
+  animation: shake $duration ease-in-out;
+  @keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-$distance);
+    }
+    50% {
+      transform: translateX($distance);
+    }
+    75% {
+      transform: translateX(-$distance);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+@mixin slideBottom{
+  
+}

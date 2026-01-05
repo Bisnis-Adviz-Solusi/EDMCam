@@ -1,0 +1,35 @@
+@use "@/assets/scss/variables" as *;
+
+// light theme (default)
+:root {
+  --font-main: #{$font-main};
+  --font-secondary: #{$font-secondary};
+
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --gradient: #{$gradient};
+  --innerBg: #{$innerBg};
+  --white: #{$white};
+  --orange: #{$orange};
+  --pink: #{$pink};
+  --lpurple: #{$lpurple};
+  --xlpurple: #{$xlpurple};
+  --lpink: #{$lpink};
+}
+
+// dark theme
+.dark {
+  --font-main: #{$font-main};
+  --font-secondary: #{$font-secondary};
+
+  --primary: #{$primaryDark};
+  --secondary: #{$secondaryDark};
+  --gradient: #{$gradientDark};
+  --innerBg: #{$innerBgDark};
+  --white: #{$whiteDark};
+  --orange: #{$orangeDark};
+  --pink: #{$pinkDark};
+  --lpurple: #{$lpurpleDark};
+  --xlpurple: #{$xlpurpleDark};
+  --lpink: #{$lpinkDark};
+}

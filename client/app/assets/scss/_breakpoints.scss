@@ -1,0 +1,32 @@
+@use "sass:map";
+
+$breakpoints: (
+  xs: 0px,
+  sm: 320px,
+  md: 570px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+//map.get: jadi ada map. isinya berkas kek XS dan nilainya berapa, ada berkas apa lagi, dsbn
+// min-width = dari x ke atas. (320 ke 500 etc)
+@mixin min($size) {
+  @media (min-width: map.get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+// max-width = batasnya itu cuma x. layar lebih kecil dari x, baru kepake. (<320)
+@mixin max($size) {
+  @media (max-width: map.get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+// antar dua size (595px -
+@mixin between($lower, $upper) {
+  @media (min-width: map.get($breakpoints, $lower)) and (max-width: map.get($breakpoints, $upper)) {
+    @content;
+  }
+}
