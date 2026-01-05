@@ -40,7 +40,7 @@ const heroSubtitle = "Website sementara · Informasi & kebijakan utama";
         <div class="badge border-none bg-[var(--dangerTone)] text-[var(--darkPrimary)]">Konsultasi end-to-end</div>
       </div>
     </div>
-    <div class="relative z-10 mt-8 flex-1 lg:mt-0">
+    <!-- <div class="relative z-10 mt-8 flex-1 lg:mt-0">
       <div class="sectionSurface rounded-3xl border border-[var(--darkAccent)] p-8 shadow-2xl">
         <div class="grid grid-cols-2 gap-4 text-[var(--softLight)]">
           <div class="stat bg-transparent shadow-none">
@@ -65,6 +65,6 @@ const heroSubtitle = "Website sementara · Informasi & kebijakan utama";
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 </template>
