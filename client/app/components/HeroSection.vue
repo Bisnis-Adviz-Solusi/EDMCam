@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const heroTitle = "Era Digital Meluas";
-const heroSubtitle = "Website sementara · Informasi & kebijakan utama";
+const heroSubtitle = "Informasi & kebijakan utama";
 </script>
 
 <template>
